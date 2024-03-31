@@ -30,6 +30,7 @@ public class bulletcs : MonoBehaviour
         if (collision.CompareTag("E"))
         {
             Debug.Log("1");
+            ObjectQueue.Instance.objectstack.Push(gameObject);
             gameObject.SetActive(false);
         }
     }
@@ -41,6 +42,7 @@ public class bulletcs : MonoBehaviour
         {
             {
                 Debug.Log("1");
+                ObjectQueue.Instance.objectstack.Push(gameObject);
                 gameObject.SetActive(false);
             }
         }

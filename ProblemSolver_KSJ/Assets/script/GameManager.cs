@@ -8,7 +8,7 @@ public class ObjectQueue : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Queue<GameObject> objectQueue;
-    
+    public Stack<GameObject> objectstack;
     
 
     private void Awake()
@@ -26,14 +26,21 @@ public class ObjectQueue : MonoBehaviour
     public void Start()
     {
         // 큐 초기화
-        objectQueue = new Queue<GameObject>();
-
+        //objectQueue = new Queue<GameObject>();
+        
         // 게임 오브젝트를 Instantiate하여 큐에 추가하고 비활성화
-        for (int i = 0; i < 10; i++)
+        /*for (int i = 0; i < 10; i++)
         {
             GameObject obj = Instantiate(bulletPrefab);
             obj.SetActive(false);
             EnqueueObject(obj);
+        }*/
+        objectstack = new Stack<GameObject>();
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject obj = Instantiate(bulletPrefab);
+            obj.SetActive(false);
+            objectstack.Push(obj);
         }
     }
     private void Update()
@@ -41,8 +48,9 @@ public class ObjectQueue : MonoBehaviour
         // 사용자가 마우스 클릭할 때마다 큐에서 요소를 제거하고 활성화
         if (Input.GetMouseButtonDown(0))
         {
-                GameObject obj = DequeueObject();
-                obj.SetActive(true);
+                //GameObject obj = DequeueObject();
+            GameObject obj = objectstack.Pop();
+            obj.SetActive(true);
         }
     }
 

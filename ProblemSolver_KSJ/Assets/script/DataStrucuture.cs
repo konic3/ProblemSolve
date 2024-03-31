@@ -17,7 +17,7 @@ namespace DataStrucuture
 
     public class LinkedList<T>
     {
-        public LinkedListNode<T> Head { get; private set; }
+        public LinkedListNode<T> Head { get; set; }
 
         public LinkedList()
         {
@@ -96,7 +96,7 @@ namespace DataStrucuture
 
     public class Stack<T>
     {
-        private Queue<T> queue;
+        public Queue<T> queue;
 
         public Stack()
         {
@@ -112,11 +112,6 @@ namespace DataStrucuture
         // 스택에서 요소를 제거하고 반환합니다.
         public T Pop()
         {
-            if (queue.Head == null)
-            {
-                throw new InvalidOperationException("Stack is empty.");
-            }
-
             // 큐의 요소를 한 개 제외하고 모두 디큐한 후 다시 인큐합니다.
             queue.DequeueAllAndEnqueueExceptLast();
 
