@@ -22,9 +22,6 @@ public class StaticMeshGenEditor : Editor
     }
 }
 
-//�޽������ ����
-//�޽������ ����
-
 public class StaticMeshGen : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -35,7 +32,6 @@ public class StaticMeshGen : MonoBehaviour
         Vector3[] vertices = new Vector3[]
         {
             new Vector3 (0.0f, 0.0f, 0.0f), //0
-            new Vector3 (-0.5f, -1.0f, 0.0f), //1
             new Vector3 (-1.0f, -2.0f, 0.0f), //1
             new Vector3 (1.0f, -2.0f, 0.0f), //2
             new Vector3 (3.5f, -2.0f, 0.0f), //3
