@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarYellow
-  m_Shader: {fileID: 4800000, guid: a9570cc477b53754fabcdec5b93cbd40, type: 3}
+  m_Name: Profshader
+  m_Shader: {fileID: 4800000, guid: ca101b17e66743944946e59c6729a632, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -78,6 +78,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.80811393, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseColor: {r: 1, g: 0.9863347, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LightDirection: {r: 1, g: -1, b: -1, a: 0}
   m_BuildTextureStacks: []

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(StaticMeshGen))]
 public class StaticMeshGenEditor : Editor
@@ -41,7 +42,6 @@ public class StaticMeshGen : MonoBehaviour
             new Vector3 (-2.5f, -6.0f, 0.0f), //7
             new Vector3 (-1.5f, -3.5f, 0.0f), //8
             new Vector3 (-3.5f, -2.0f, 0.0f), //9
-
             new Vector3 (0.0f, 0.0f, 10.0f), //10
             new Vector3 (-1.0f, -2.0f, 10.0f), //11
             new Vector3 (1.0f, -2.0f, 10.0f), //12
@@ -52,14 +52,18 @@ public class StaticMeshGen : MonoBehaviour
             new Vector3 (-2.5f, -6.0f, 10.0f), //17
             new Vector3 (-1.5f, -3.5f, 10.0f), //18
             new Vector3 (-3.5f, -2.0f, 10.0f), //19
-
         };
-
+        Vector3[] normals = new Vector3[]
+       {
+            new Vector3 (0.0f, 0.0f, -1.0f),
+            new Vector3 (0.0f, 0.0f, -1.0f),
+            new Vector3 (0.0f, 0.0f, -1.0f),
+       };
         mesh.vertices = vertices;
 
         int[] triangleIndices = new int[]
         {
-            0,2,1,
+            1,0,2,
             2,3,4,
             4,5,6,
             6,7,8,
@@ -67,7 +71,7 @@ public class StaticMeshGen : MonoBehaviour
             6,8,1,
             1,2,6,
             4,6,2,
-            10,12,11,
+            11,10,12,
             12,13,14,
             14,15,16,
             16,17,18,
@@ -76,7 +80,7 @@ public class StaticMeshGen : MonoBehaviour
             11,12,16,
             14,16,12,
 
-            1,2,0,
+         /*   1,2,0,
             4,3,2,
             6,5,4,
             8,7,6,
@@ -92,7 +96,7 @@ public class StaticMeshGen : MonoBehaviour
             11,18,16,
             16,12,11,
             12,16,14,
-
+*/
 
            0,10,12,
            12,2,0,
@@ -116,7 +120,7 @@ public class StaticMeshGen : MonoBehaviour
            10,0,1,
 
 
-           12,10,0,
+          /* 12,10,0,
            0,2,12,
            13,12,2,
            2,3,13,
@@ -136,14 +140,18 @@ public class StaticMeshGen : MonoBehaviour
            9,19,11,
            9,1,11,
            10,11,1,
-           1,0,10,
+           1,0,10,*/
         };
 
+        Vector3 asdf = Vector3.Cross(vertices[2]-vertices[0], vertices[1] - vertices[0]);
+        Debug.Log(asdf);
+        mesh.vertices = vertices;
+        mesh.normals = normals;
         mesh.triangles = triangleIndices;
 
         MeshFilter mf = this.AddComponent<MeshFilter>();
+        mf.mesh = mesh;
         MeshRenderer mr = this.AddComponent<MeshRenderer>();
 
-        mf.mesh = mesh;
     }
 }
