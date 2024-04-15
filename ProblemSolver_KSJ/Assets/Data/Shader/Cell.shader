@@ -1,4 +1,4 @@
-ï»¿Shader "Unlit/CelShader"
+Shader "Unlit/CelShader"
 {
     Properties
     {
@@ -14,7 +14,7 @@
     {
         Tags { "RenderType" = "Opaque" }
 
-        cull front    //! 1PassëŠ” ì•ë©´ì„ ê·¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤.
+        cull front    //! 1Pass´Â ¾Õ¸éÀ» ±×¸®Áö ¾Ê´Â´Ù.
         Pass
         {
             CGPROGRAM
@@ -22,13 +22,13 @@
             #pragma fragment _FragmentFuc
             #include "UnityCG.cginc"
 
-                struct ST_VertexInput    //! ë²„í…ìŠ¤ ì‰ì´ë” Input
+                struct ST_VertexInput    //! ¹öÅØ½º ½¦ÀÌ´õ Input
                 {
                     float4 vertex : POSITION;
                     float3 normal : NORMAL;
                 };
 
-                struct ST_VertexOutput    //! ë²„í…ìŠ¤ ì‰ì´ë” Output
+                struct ST_VertexOutput    //! ¹öÅØ½º ½¦ÀÌ´õ Output
                 {
                     float4 vertex : SV_POSITION;
                 };
@@ -39,10 +39,10 @@
                 {
                     ST_VertexOutput stOutput;
 
-                    float3 fNormalized_Normal = normalize(stInput.normal);        //! ë¡œì»¬ ë…¸ë§ ë²¡í„°ë¥¼ ì •ê·œí™” ì‹œí‚´
-                    float3 fOutline_Position = stInput.vertex + fNormalized_Normal * (_Outline_Bold * 0.1f); //! ë²„í…ìŠ¤ ì¢Œí‘œì— ë…¸ë§ ë°©í–¥ìœ¼ë¡œ ë”í•œë‹¤.
+                    float3 fNormalized_Normal = normalize(stInput.normal);        //! ·ÎÄÃ ³ë¸» º¤ÅÍ¸¦ Á¤±ÔÈ­ ½ÃÅ´
+                    float3 fOutline_Position = stInput.vertex + fNormalized_Normal * (_Outline_Bold * 0.1f); //! ¹öÅØ½º ÁÂÇ¥¿¡ ³ë¸» ¹æÇâÀ¸·Î ´õÇÑ´Ù.
 
-                    stOutput.vertex = UnityObjectToClipPos(fOutline_Position);    //! ë…¸ë§ ë°©í–¥ìœ¼ë¡œ ë”í•´ì§„ ë²„í…ìŠ¤ ì¢Œí‘œë¥¼ ì¹´ë©”ë¼ í´ë¦½ ê³µê°„ìœ¼ë¡œ ë³€í™˜ 
+                    stOutput.vertex = UnityObjectToClipPos(fOutline_Position);    //! ³ë¸» ¹æÇâÀ¸·Î ´õÇØÁø ¹öÅØ½º ÁÂÇ¥¸¦ Ä«¸Ş¶ó Å¬¸³ °ø°£À¸·Î º¯È¯ 
                     return stOutput;
                 }
 
@@ -55,10 +55,10 @@
             ENDCG
         }
 
-        cull back    //! 2PassëŠ” ë’·ë©´ì„ ê·¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤.
+        cull back    //! 2Pass´Â µŞ¸éÀ» ±×¸®Áö ¾Ê´Â´Ù.
         CGPROGRAM
 
-        #pragma surface surf _BandedLighting    //! ì»¤ìŠ¤í…€ ë¼ì´íŠ¸ ì‚¬ìš©
+        #pragma surface surf _BandedLighting    //! Ä¿½ºÅÒ ¶óÀÌÆ® »ç¿ë
 
         struct Input
         {
@@ -67,7 +67,7 @@
             float2 uv_BumpMap;
         };
 
-        struct SurfaceOutputCustom        //! Custom SurfaceOutput êµ¬ì¡°ì²´, BandLUT í…ìŠ¤ì²˜ë¥¼ ë„£ê¸° ìœ„í•´ ë§Œë“¬
+        struct SurfaceOutputCustom        //! Custom SurfaceOutput ±¸Á¶Ã¼, BandLUT ÅØ½ºÃ³¸¦ ³Ö±â À§ÇØ ¸¸µë
         {
             fixed3 Albedo;
             fixed3 Normal;
@@ -98,18 +98,18 @@
             o.Normal = fNormalTex;
         }
 
-        //! ì»¤ìŠ¤í…€ ë¼ì´íŠ¸ í•¨ìˆ˜
+        //! Ä¿½ºÅÒ ¶óÀÌÆ® ÇÔ¼ö
         float4 Lighting_BandedLighting(SurfaceOutputCustom s, float3 lightDir, float3 viewDir, float atten)
         {
-            //! BandedDiffuse ì¡°ëª… ì²˜ë¦¬ ì—°ì‚°
+            //! BandedDiffuse Á¶¸í Ã³¸® ¿¬»ê
             float3 fBandedDiffuse;
-            float fNDotL = dot(s.Normal, lightDir) * 0.5f + 0.5f;    //! Half Lambert ê³µì‹
+            float fNDotL = dot(s.Normal, lightDir) * 0.5f + 0.5f;    //! Half Lambert °ø½Ä
 
-            //! 0~1ë¡œ ì´ë£¨ì–´ì§„ fNDotLê°’ì„ 3ê°œì˜ ê°’ìœ¼ë¡œ ê³ ì •í•¨ <- Banded Lighting ì‘ì—…
+            //! 0~1·Î ÀÌ·ç¾îÁø fNDotL°ªÀ» 3°³ÀÇ °ªÀ¸·Î °íÁ¤ÇÔ <- Banded Lighting ÀÛ¾÷
             //float fBandNum = 3.0f;
             //fBandedDiffuse = ceil(fNDotL * fBandNum) / fBandNum;             
 
-            //! BandLUT í…ìŠ¤ì²˜ì˜ UV ì¢Œí‘œì— 0~1ë¡œ ì´ë£¨ì–´ì§„ NDotLê°’ì„ ë„£ì–´ì„œ ìŒì˜ ìƒ‰ì„ ê°€ì ¸ì˜¨ë‹¤.
+            //! BandLUT ÅØ½ºÃ³ÀÇ UV ÁÂÇ¥¿¡ 0~1·Î ÀÌ·ç¾îÁø NDotL°ªÀ» ³Ö¾î¼­ À½¿µ »öÀ» °¡Á®¿Â´Ù.
             fBandedDiffuse = tex2D(_Band_Tex, float2(fNDotL, 0.5f)).rgb;
 
 
@@ -125,7 +125,7 @@
 
 
 
-            //! ìµœì¢… ì»¬ëŸ¬ ì¶œë ¥
+            //! ÃÖÁ¾ ÄÃ·¯ Ãâ·Â
             float4 fFinalColor;
             fFinalColor.rgb = ((s.Albedo * _Color) + fSpecularColor) *
                                  fBandedDiffuse * _LightColor0.rgb * atten;
@@ -137,4 +137,3 @@
         ENDCG
     }
 }
-
