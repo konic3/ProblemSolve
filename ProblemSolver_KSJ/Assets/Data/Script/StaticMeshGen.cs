@@ -43,16 +43,16 @@ public class StaticMeshGen : MonoBehaviour
             new Vector3 (-1.5f, -3.5f, 0.0f), //8
             new Vector3 (-3.5f, -2.0f, 0.0f), //9
             
-            new Vector3 (-1.0f, -2.0f, 5.0f), //10
-            new Vector3 (0.0f, 0.0f, 5.0f), //11
-            new Vector3 (1.0f, -2.0f, 5.0f), //12
-            new Vector3 (3.5f, -2.0f, 5.0f), //13
-            new Vector3 (1.5f, -3.5f, 5.0f), //14
-            new Vector3 (2.5f, -6.0f, 5.0f), //15
-            new Vector3 (0f, -4.5f, 5.0f), //16
-            new Vector3 (-2.5f, -6.0f, 5.0f), //17
-            new Vector3 (-1.5f, -3.5f, 5.0f), //18
-            new Vector3 (-3.5f, -2.0f, 5.0f), //19
+            new Vector3 (-1.0f, -2.0f, 4.0f), //10
+            new Vector3 (0.0f, 0.0f, 4.0f), //11
+            new Vector3 (1.0f, -2.0f, 4.0f), //12
+            new Vector3 (3.5f, -2.0f, 4.0f), //13
+            new Vector3 (1.5f, -3.5f, 4.0f), //14
+            new Vector3 (2.5f, -6.0f, 4.0f), //15
+            new Vector3 (0f, -4.5f, 4.0f), //16
+            new Vector3 (-2.5f, -6.0f, 4.0f), //17
+            new Vector3 (-1.5f, -3.5f, 4.0f), //18
+            new Vector3 (-3.5f, -2.0f, 4.0f), //19
              
         };
 
@@ -111,29 +111,6 @@ public class StaticMeshGen : MonoBehaviour
             10,0,9,
             0,10,11,
             11,1,0,
-
-            //기둥 뒤에서 (필요없)
-            /*12,11,1,
-            1,2,12,
-            13,12,2,
-            2,3,13,
-            14,13,3,
-            3,4,14,
-            15,14,4,
-            4,5,15,
-            16,15,5,
-            5,6,16,
-            17,16,6,
-            6,7,17,
-            18,17,7,
-            7,8,18,
-            19,18,8,
-            8,9,19,
-            10,19,9,
-            9,0,10,
-            0,10,11,
-            0,1,11,*/
-
 
         };
 
