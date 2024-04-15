@@ -36,7 +36,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 0, a: 1}
     - _DiffuseColor: {r: 0.9810126, g: 1, b: 0, a: 1}
-    - _LightDirection: {r: -1.71, g: 3.67, b: -2.64, a: 1}
+    - _LightDirection: {r: 2.9, g: 2.3, b: -2.64, a: 1}
     - _OutlineColor: {r: 0.6072109, g: 1, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
