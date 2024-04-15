@@ -1,12 +1,10 @@
-Shader "Custom/CartoonShader"
+ï»¿Shader"Custom/CartoonShader"
 {
     Properties
     {
         _DiffuseColor("Diffuse Color", Color) = (1, 1, 0, 1)
-        _LightDirection("Light Direction", Vector) = (1, -1, -1, 0)
-        _HighlightColor("Highlight Color", Color) = (1, 1, 1, 1)
-        _HighlightThreshold("Highlight Threshold", Range(0.0, 1.0)) = 0.8
-        _HighlightIntensity("Highlight Intensity", Range(0.0, 1.0)) = 0.3
+        _LightDirection("Light Direction", Vector) = (1, 1, 1, 0)
+
     }
         SubShader
     {
@@ -34,9 +32,7 @@ Shader "Custom/CartoonShader"
 
             uniform float4 _DiffuseColor;
             uniform float4 _LightDirection;
-            uniform float4 _HighlightColor;
-            uniform float _HighlightThreshold;
-            uniform float _HighlightIntensity;
+
 
             v2f vert(appdata v)
             {
@@ -52,23 +48,18 @@ Shader "Custom/CartoonShader"
                 float3 lightDir = normalize(_LightDirection.xyz);
                 float diff = max(dot(normal, lightDir), 0.0);
 
-                // ±âº» »ö»ó °è»ê
+                // ê¸°ë³¸ ìƒ‰ìƒ ê³„ì‚°
                 float3 color;
-                if (diff > 0.8) {
-                    color = _DiffuseColor.rgb; // ³ë¶õ»ö
+                if (diff > 0.7) { //0.8
+                    color = _DiffuseColor.rgb; // ë…¸ëž€ìƒ‰
                 }
                 else if (diff > 0.2) {
-                    color = _DiffuseColor.rgb * 0.8; // ¿¬ÇÑ ³ë¶õ»ö
+                    color = _DiffuseColor.rgb * 0.8; // ì—°í•œ ë…¸ëž€ìƒ‰
                 }
                 else {
-                    color = float3(0.0, 0.0, 0.0); // °ËÀº»ö
+                    color = float3(0.0, 0.0, 0.0); // ê²€ì€ìƒ‰
                 }
 
-                // ºûÀÌ Á÷Á¢ÀûÀ¸·Î ÀÖ´Â À§Ä¡¿¡ ÇÏÀÌ¶óÀÌÆ®¸¦ Ãß°¡
-                if (diff > _HighlightThreshold) {
-                    float3 highlight = _HighlightIntensity * _HighlightColor.rgb;
-                    color += highlight;
-                }
 
                 return fixed4(color, 1.0);
             }
