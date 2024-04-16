@@ -61,7 +61,8 @@ public class StaticMeshGen : MonoBehaviour
         int[] triangleIndices = new int[]
         {
             //앞면
-            0,1,2,
+            //0,1,2,
+            1,2,0,
             2,3,4,
             4,5,6,
             6,7,8,
@@ -91,7 +92,7 @@ public class StaticMeshGen : MonoBehaviour
             12,16,14,
 
             //기둥
-            1,11,12,
+            /*1,11,12,
             12,2,1,
             2,12,13,
             13,3,2,
@@ -110,8 +111,29 @@ public class StaticMeshGen : MonoBehaviour
             9,19,10,
             10,0,9,
             0,10,11,
-            11,1,0,
+            11,1,0,*/
 
+            //기둥
+            1,11,12,
+            1,12,2,
+            2,12,13,
+            2,13,3,
+            3,13,14,
+            3,14,4,
+            4,14,15,
+            4,15,5,
+            5,15,16,
+            5,16,6,
+            6,16,17,
+            6,17,7,
+            7,17,18,
+            7,18,8,
+            8,18,19,
+            8,19,9,
+            9,19,10,
+            9,10,0,
+            0,10,11,
+            0,11,1,
         };
 
         Vector3[] normals = new Vector3[vertices.Length];
