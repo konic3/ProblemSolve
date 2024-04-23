@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetObject: {fileID: 3830966575053329614, guid: 8111714b0801dd34381b9c30756bbe94, type: 3}
+  Radius: 10
   ObjectNumber: 100
 --- !u!4 &1091336125
 Transform:
