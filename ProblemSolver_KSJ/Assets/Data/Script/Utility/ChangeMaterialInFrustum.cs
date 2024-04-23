@@ -29,11 +29,10 @@ public class ChangeMaterialInFrustum : MonoBehaviour
 
         foreach (Renderer renderer in renderers)
         {
-            Vector3 size = renderer.bounds.size;
-            float diameter = Mathf.Max(size.x, Mathf.Max(size.y, size.z));
+            Bounds bounds = renderer.bounds;
 
             // Renderer의 중심점이 프러스텀 내에 있는지 확인
-            if (frustum.IsInsideFrustum(renderer.bounds.center, diameter/2.0f))
+            if (frustum.IsInsideFrustum(bounds))
             {
                 // 프러스텀 내에 있는 경우 Material1 적용
                 renderer.material = material1;
@@ -57,16 +56,37 @@ public class FrustumPlanes
         planes = GeometryUtility.CalculateFrustumPlanes(camera);
     }
 
-    public bool IsInsideFrustum(Vector3 point, float sideSize)
+    public bool IsInsideFrustum(Bounds bounds)
     {
-        foreach (var plane in planes)
+        Vector3[] corners = new Vector3[8];
+
+        // Compute all 8 corners of the bounds
+        corners[0] = bounds.min;
+        corners[1] = new Vector3(bounds.min.x, bounds.min.y, bounds.max.z);
+        corners[2] = new Vector3(bounds.min.x, bounds.max.y, bounds.min.z);
+        corners[3] = new Vector3(bounds.min.x, bounds.max.y, bounds.max.z);
+        corners[4] = new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);
+        corners[5] = new Vector3(bounds.max.x, bounds.min.y, bounds.max.z);
+        corners[6] = new Vector3(bounds.max.x, bounds.max.y, bounds.min.z);
+        corners[7] = bounds.max;
+
+        // Check each corner to see if any of them is inside the frustum
+        foreach (Vector3 corner in corners)
         {
-            if (!plane.GetSide(point))
+            bool inside = true;
+            foreach (Plane plane in planes)
             {
-                return false;
-            }            
-            //디스턴스로 반지름 넣고 뭐시기 저시기
+                if (plane.GetDistanceToPoint(corner) < 0)
+                {
+                    inside = false;
+                    break;
+                }
+            }
+            if (inside)
+            {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 }

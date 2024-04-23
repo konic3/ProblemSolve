@@ -45,18 +45,17 @@ public class RandomObjectGenerator : MonoBehaviour
 
     }
 
-#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         // Box 형태의 가이드라인을 그립니다.
         Handles.color = Color.yellow;
 
         Matrix4x4 cubeTransform = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        
+
         using (new Handles.DrawingScope(cubeTransform))
         {
-            Handles.DrawWireCube(Vector3.zero, Vector3.one);
+            Vector3 from = transform.position + transform.forward * 1.0f;
+            Handles.DrawWireArc(transform.position, transform.up, from, 360.0f, 1.0f);
         }
     }
-#endif
 }
