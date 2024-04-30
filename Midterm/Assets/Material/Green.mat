@@ -84,9 +84,9 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.24286291, g: 0.6509434, b: 0.19958171, a: 1}
+    - _AmbientColor: {r: 0.3371291, g: 0.764151, b: 0.29196337, a: 1}
     - _Color: {r: 0, g: 1, b: 0.058823586, a: 1}
     - _DiffuseColor: {r: 0.04705882, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightDirection: {r: 1, g: 1, b: 1, a: 0}
+    - _LightDirection: {r: 0.85, g: 1, b: -0.19, a: 0}
   m_BuildTextureStacks: []

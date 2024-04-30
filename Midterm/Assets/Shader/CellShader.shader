@@ -4,6 +4,7 @@
     {
         _DiffuseColor("Diffuse Color", Color) = (1, 1, 0, 1)
         _LightDirection("Light Direction", Vector) = (1, 1, 1, 0)
+        _AmbientColor("AmbientColor", Color)=(1,1,0,1)
 
     }
         SubShader
@@ -32,6 +33,7 @@
 
             uniform float4 _DiffuseColor;
             uniform float4 _LightDirection;
+            uniform float4 _AmbientColor;
 
 
             v2f vert(appdata v)
@@ -51,15 +53,12 @@
                 // 기본 색상 계산
                 float3 color;
                 if (diff > 0.3) { //0.8
-                    color = _DiffuseColor.rgb; // 노란색
+                    color = _DiffuseColor.rgb; 
                 }
-                else if (diff > 0.2) {
-                    color = _DiffuseColor.rgb * 0.8; // 연한 노란색
-                }
+                //else if (diff > 0.2) {color = _DiffuseColor.rgb * 0.8; }
                 else {
-                    //color = float3(0.0, 0.0, 0.0); // 검은색
-                    color = _DiffuseColor.rgb * 0.8; // 연한 노란색
-
+                    //color = float3(0.0, 0.0, 0.0);
+                    color = _DiffuseColor.rgb * 0.8; 
                 }
 
 
