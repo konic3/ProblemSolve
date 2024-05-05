@@ -20,24 +20,24 @@ public class CameraControl : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.back * speed * Time.deltaTime);
-            MC.transform.Translate(Vector3.down * (speed-1.5f) * Time.deltaTime);
+           // MC.transform.Translate(Vector3.down * (speed-1.5f) * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            MC.transform.Translate(Vector3.up * (speed - 1.5f) * Time.deltaTime);
+           // MC.transform.Translate(Vector3.up * (speed - 1.5f) * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
-            MC.transform.Translate(Vector3.left * speed * Time.deltaTime);
+           // MC.transform.Translate(Vector3.left * speed * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
-            MC.transform.Translate(Vector3.right * speed * Time.deltaTime);
+           // MC.transform.Translate(Vector3.right * speed * Time.deltaTime);
 
         }
 
@@ -58,7 +58,7 @@ public class CameraControl : MonoBehaviour
             float elapsedTime = Time.time - rotationStartTime;
             float t = elapsedTime / rotationTime;
 
-            MC.transform.RotateAround(target.position, rotationAxis, 90 * Time.deltaTime / rotationTime); // 90도 회전
+            gameObject.transform.RotateAround(target.position, rotationAxis, 90 * Time.deltaTime / rotationTime); // 90도 회전
 
             // 회전이 완료되었는지 확인
             if (elapsedTime >= rotationTime)
@@ -78,6 +78,6 @@ public class CameraControl : MonoBehaviour
         rotationStartTime = Time.time;
 
         // 캐릭터의 방향을 회전 방향과 일치시킴
-        character.rotation = Quaternion.Euler(character.rotation.eulerAngles + axis * 90);
+        //character.rotation = Quaternion.Euler(character.rotation.eulerAngles + axis * 90);
     }
 }

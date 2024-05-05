@@ -1,0 +1,70 @@
+﻿Shader "Custom/CartoonShader"
+{
+    Properties
+    {
+        _DiffuseColor("Diffuse Color", Color) = (1, 1, 0, 1)
+        _LightDirection("Light Direction", Vector) = (1, 1, 1, 0)
+        _AmbientColor("AmbientColor", Color) = (1,1,0,1)
+        _LightIntensity("Light Intensity", Range(0, 1)) = 1.0 // 범위를 0에서 1로 제한합니다.
+
+    }
+        SubShader
+    {
+        Tags { "RenderType" = "Opaque" }
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+                float3 normal : NORMAL;
+            };
+
+            uniform float4 _DiffuseColor;
+            uniform float4 _LightDirection;
+            uniform float4 _AmbientColor;
+            float _LightIntensity;
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.normal = v.normal;
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                float3 normal = normalize(i.normal);
+                float3 lightDir = normalize(_LightDirection.xyz);
+                float diff = max(dot(normal, lightDir), 0.0);
+
+                // 기본 색상 계산
+                float3 color;
+                if (diff > 0.3) { //0.8
+                    color = _DiffuseColor.rgb * _LightIntensity;
+                }
+                //else if (diff > 0.2) {color = _DiffuseColor.rgb * 0.8; }
+                else {
+                    //color = float3(0.0, 0.0, 0.0);
+                    color = _AmbientColor.rgb * _LightIntensity * 0.8;
+                }
+
+                return fixed4(color, 1.0);
+            }
+            ENDCG
+        }
+    }
+}
